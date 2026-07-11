@@ -1,0 +1,17 @@
+{
+  "schema": "vibe64.seed",
+  "schemaVersion": 1,
+  "id": "jskit-workspaces",
+  "name": "Workspaces",
+  "tagline": "A shared place for teams to work",
+  "description": "People sign in, create or join workspaces, and collaborate on shared information. Choose this for team products and multi-organisation apps.",
+  "kind": "foundation",
+  "repository": "vibe64-dev/jskit-seed-workspaces",
+  "basedOn": null,
+  "icon": "workspaces",
+  "capabilities": {
+    "authentication": "local-db",
+    "database": "mariadb",
+    "workspaces": true
+  }
+}
