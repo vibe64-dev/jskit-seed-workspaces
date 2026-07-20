@@ -1,12 +1,8 @@
 <script setup>
-import { computed } from "vue";
-import { useWorkspaceRouteContext } from "@jskit-ai/workspaces-web/client/composables/useWorkspaceRouteContext";
 import WorkspaceNotFoundCard from "@/components/WorkspaceNotFoundCard.vue";
 import { useWorkspaceNotFoundState } from "@/composables/useWorkspaceNotFoundState";
 
 const { workspaceUnavailable, workspaceUnavailableMessage } = useWorkspaceNotFoundState();
-const { workspaceSlugFromRoute } = useWorkspaceRouteContext();
-const adminPath = computed(() => `/w/${encodeURIComponent(workspaceSlugFromRoute.value || "")}/admin`);
 </script>
 
 <template>
@@ -17,20 +13,15 @@ const adminPath = computed(() => `/w/${encodeURIComponent(workspaceSlugFromRoute
   />
   <section v-else class="workspace-home-screen d-flex flex-column ga-4">
     <header>
-      <p class="text-overline text-medium-emphasis mb-1">Personal workspace</p>
-      <h1 class="workspace-home-screen__title">App</h1>
-      <p class="text-body-2 text-medium-emphasis mb-0">Your personal workspace is ready.</p>
+      <p class="text-overline text-medium-emphasis mb-1">Workspace</p>
+      <h1 class="workspace-home-screen__title">Workspace Home</h1>
+      <p class="text-body-2 text-medium-emphasis mb-0">The current workspace is active.</p>
     </header>
 
     <v-sheet rounded="lg" border class="workspace-home-screen__panel">
-      <h2 class="text-h6 mb-2">Blank workspace</h2>
+      <h2 class="text-h6 mb-2">No workspace activity yet</h2>
       <p class="text-body-2 text-medium-emphasis mb-0">
-        Add the first feature when you are ready.
-      </p>
-      <p class="text-body-2 text-medium-emphasis mt-4 mb-0">
-        This page can redirect straight to
-        <router-link :to="adminPath">Admin</router-link>
-        if this becomes a collaboration-only project with no public-facing results.
+        Activity from workspace workflows will appear here.
       </p>
     </v-sheet>
   </section>

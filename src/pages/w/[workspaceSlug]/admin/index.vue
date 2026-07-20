@@ -18,6 +18,10 @@ const { workspaceUnavailable, workspaceUnavailableMessage } = useWorkspaceNotFou
         <h1 class="workspace-admin-screen__title">Workspace Admin</h1>
         <p class="text-body-2 text-medium-emphasis mb-0">Manage members and workspace settings.</p>
       </div>
+      <div class="workspace-admin-screen__actions">
+        <v-btn color="primary" variant="flat" to="./members">Members</v-btn>
+        <v-btn color="primary" variant="tonal" to="./workspace/settings">Settings</v-btn>
+      </div>
     </header>
 
     <v-sheet rounded="lg" border class="workspace-admin-screen__panel">
@@ -45,6 +49,13 @@ const { workspaceUnavailable, workspaceUnavailableMessage } = useWorkspaceNotFou
   margin: 0 0 0.4rem;
 }
 
+.workspace-admin-screen__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
 .workspace-admin-screen__panel {
   padding: 1rem;
 }
@@ -52,6 +63,15 @@ const { workspaceUnavailable, workspaceUnavailableMessage } = useWorkspaceNotFou
 @media (max-width: 640px) {
   .workspace-admin-screen__header {
     flex-direction: column;
+  }
+
+  .workspace-admin-screen__actions {
+    width: 100%;
+  }
+
+  .workspace-admin-screen__actions :deep(.v-btn) {
+    min-height: 48px;
+    flex: 1 1 10rem;
   }
 }
 </style>
