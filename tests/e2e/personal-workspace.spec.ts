@@ -121,10 +121,14 @@ test("database-backed account can use its personal workspace", async ({ page }) 
   await adminLink.click();
   await page.waitForURL((url) => url.pathname === `/w/${primaryAccount.username}/admin`);
   await expect(page.getByRole("heading", { name: "Workspace Admin", exact: true })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Members", exact: true })).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Settings", exact: true })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "Members", exact: true })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "Settings", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Members", exact: true })).toHaveAttribute(
+    "href",
+    `/w/${primaryAccount.username}/admin/members`
+  );
+  await expect(page.getByRole("link", { name: "Settings", exact: true })).toHaveAttribute(
+    "href",
+    `/w/${primaryAccount.username}/admin/workspace/settings`
+  );
 
   await signOut(page, primaryAccount.username);
   await signInOrRegister(page, isolationAccount);

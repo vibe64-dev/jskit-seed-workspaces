@@ -10,7 +10,7 @@ The smallest supported browser flow is:
 
 1. Register or sign in with a local account.
 2. Land on `/home` and open the account's single personal workspace.
-3. See the blank workspace at `/w/:workspaceSlug` and optionally follow its Admin link.
+3. See the blank workspace at `/w/:workspaceSlug` and optionally open its Admin surface from the profile menu.
 4. Sign out and return to the local login screen.
 
 `/home` does not automatically redirect into the workspace. The workspace page explains that a future collaboration-only product may choose to redirect to its Admin surface.
@@ -43,7 +43,7 @@ Vibe64 supplies `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD`. D
 - `app`: workspace-member surface rooted at `/w/[workspaceSlug]`.
 - `admin`: workspace-member surface rooted at `/w/[workspaceSlug]/admin`.
 
-The workspace landing page is intentionally blank and includes an Admin link. The generated Admin landing page has no Members or Settings shortcut buttons because those links previously led to invalid relative routes. No replacement redirect was added.
+The workspace landing page is intentionally blank and exposes the Admin surface through the profile menu. The generated Admin landing page includes Members and Settings shortcuts with workspace-scoped absolute routes.
 
 Workspace invitations are disabled in both public and server configuration, including personal mode, and new workspace settings default to invitations disabled. Generated invitation implementation files may still exist as installed package output, but the capability is not exposed in the supported UI.
 
@@ -79,6 +79,6 @@ The receipt is stored at `.jskit/verification/ui.json`. Browser tests require `P
 
 ## Verification and known limits
 
-The personal-workspace E2E test uses two deterministic development accounts. It covers sign-in or registration, a single workspace per account, responsive layout, the blank workspace, Admin navigation, absence of invitation and broken shortcut UI, cross-user workspace isolation, and sign-out.
+The personal-workspace E2E test uses two deterministic development accounts. It covers sign-in or registration, a single workspace per account, responsive layout, the blank workspace, profile-menu Admin navigation, workspace-scoped Admin shortcuts, cross-user workspace isolation, and sign-out.
 
 The full JSKIT verifier currently passes. JSKIT doctor reports one low-risk generated ownership warning for `packages/main/src/server/email/workspaceInviteEmail.js`; invitations are disabled, so this helper is not part of the supported runtime flow. Product features, deployment behavior, and production credentials remain intentionally undefined.
