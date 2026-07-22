@@ -115,7 +115,8 @@ test("database-backed account can use its personal workspace", async ({ page }) 
     });
   }
 
-  const adminLink = page.getByRole("link", { name: "Admin", exact: true });
+  await page.getByRole("button", { name: primaryAccount.username, exact: true }).click();
+  const adminLink = page.getByRole("link", { name: "Go to admin", exact: true });
   await expect(adminLink).toHaveAttribute("href", `/w/${primaryAccount.username}/admin`);
   await adminLink.click();
   await page.waitForURL((url) => url.pathname === `/w/${primaryAccount.username}/admin`);
