@@ -104,13 +104,13 @@ test("database-backed account can use its personal workspace", async ({ page }) 
   await page.goto(appUrl("/home"));
 
   await openPersonalWorkspace(page, primaryAccount.username);
-  await expect(page.getByRole("heading", { name: "App", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Blank workspace", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Workspace Home", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No workspace activity yet", exact: true })).toBeVisible();
 
   for (const viewport of viewports) {
     await test.step(`${viewport.name} workspace remains usable`, async () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
-      await expect(page.getByRole("heading", { name: "App", exact: true })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Workspace Home", exact: true })).toBeVisible();
       await expectNoHorizontalOverflow(page);
     });
   }
@@ -128,7 +128,7 @@ test("database-backed account can use its personal workspace", async ({ page }) 
   await signOut(page, primaryAccount.username);
   await signInOrRegister(page, isolationAccount);
   await openPersonalWorkspace(page, isolationAccount.username);
-  await expect(page.getByRole("heading", { name: "Blank workspace", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No workspace activity yet", exact: true })).toBeVisible();
   await signOut(page, isolationAccount.username);
 
   await page.locator('input[type="email"]').fill(primaryAccount.email);
@@ -141,5 +141,5 @@ test("database-backed account can use its personal workspace", async ({ page }) 
   await page.waitForURL((url) => url.pathname === "/home");
 
   await openPersonalWorkspace(page, primaryAccount.username);
-  await expect(page.getByRole("heading", { name: "Blank workspace", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "No workspace activity yet", exact: true })).toBeVisible();
 });
